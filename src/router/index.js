@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import DjsList from '../views/djs/DjsList.vue';
+import RequestsReceived from '../views/requests/RequestsReceived.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +13,7 @@ const router = createRouter({
       children: [{ path: 'contact', component: null }],
     },
     { path: '/register', component: null },
-    { path: '/requests', component: null },
+    { path: '/requests', component: RequestsReceived },
     { path: '/:notFound(.*)', component: null },
   ],
 });
