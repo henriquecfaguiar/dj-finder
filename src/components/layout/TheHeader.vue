@@ -1,7 +1,3 @@
-<script setup>
-import { RouterLink } from 'vue-router';
-</script>
-
 <template>
   <header>
     <nav
@@ -22,6 +18,6 @@ import { RouterLink } from 'vue-router';
 a:active,
 a:hover,
 a.router-link-active {
-  @apply border-b-2 border-slate-900 text-yellow-300 duration-200;
+  @apply border-b-2 border-slate-900 text-yellow-300;
 }
 </style>
