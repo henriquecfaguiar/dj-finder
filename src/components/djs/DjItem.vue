@@ -37,8 +37,13 @@ const djDetailsLink = computed(() => {
   >
     <h3 class="text-xl">{{ artistName }}</h3>
     <h4 class="font-bold text-yellow-300">{{ `$${rate}/hour` }}</h4>
-    <div>
-      <span v-for="genre in genres" :key="genre">{{ genre }}</span>
+    <div class="mt-2">
+      <base-badge
+        v-for="genre in props.genres"
+        :key="genre"
+        :type="genre"
+        :title="genre"
+      ></base-badge>
     </div>
     <div class="actions flex justify-end gap-2">
       <RouterLink class="item-link" :to="djContactLink">Contact</RouterLink>
