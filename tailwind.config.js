@@ -6,6 +6,9 @@ module.exports = {
       fontFamily: {
         sans: ['JetBrains Mono', 'sans-serif'],
       },
+      boxShadow: {
+        custom: '0 2px 8px rgba(0, 0, 0, 0.26)',
+      },
     },
   },
   plugins: [],

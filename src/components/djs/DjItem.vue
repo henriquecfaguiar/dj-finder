@@ -33,7 +33,7 @@ const djDetailsLink = computed(() => {
 
 <template>
   <li
-    class="rounded-lg border-2 border-slate-600 bg-gradient-to-r from-slate-600 to-slate-700 py-4 px-6 text-white shadow-lg shadow-slate-700"
+    class="rounded-lg border-2 border-slate-600 bg-gradient-to-r from-slate-600 to-slate-700 py-4 px-6 text-white shadow-md shadow-slate-700"
   >
     <h3 class="text-xl">{{ artistName }}</h3>
     <h4 class="font-bold text-yellow-300">{{ `$${rate}/hour` }}</h4>
