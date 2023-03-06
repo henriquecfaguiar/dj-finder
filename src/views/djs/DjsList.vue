@@ -11,9 +11,11 @@ const hasDjs = store.hasDjs;
   <section>Filter</section>
   <base-card>
     <section>
-      <div class="controls flex justify-between">
-        <button>Refresh</button>
-        <RouterLink to="/register">Register as DJ</RouterLink>
+      <div class="controls mb-4 flex justify-between">
+        <base-button color="green">Refresh</base-button>
+        <base-button link color="yellow" to="/register"
+          >Register as DJ</base-button
+        >
       </div>
       <ul class="space-y-6" v-if="hasDjs">
         <DjItem

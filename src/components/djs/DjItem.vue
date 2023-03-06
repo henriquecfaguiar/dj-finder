@@ -33,16 +33,18 @@ const djDetailsLink = computed(() => {
 
 <template>
   <li
-    class="rounded-lg border-2 border-slate-600 bg-gradient-to-r from-slate-600 to-slate-700 py-4 px-6 text-white shadow-md shadow-slate-700"
+    class="rounded-lg border-2 border-slate-600 bg-gradient-to-r from-slate-600 to-slate-700 p-4 text-white shadow-md shadow-slate-700"
   >
     <h3 class="text-xl">{{ artistName }}</h3>
     <h4 class="font-bold text-yellow-300">{{ `$${rate}/hour` }}</h4>
     <div>
       <span v-for="genre in genres" :key="genre">{{ genre }}</span>
     </div>
-    <div class="actions flex justify-end">
-      <RouterLink :to="djContactLink">Contact</RouterLink>
-      <RouterLink :to="djDetailsLink">View Details</RouterLink>
+    <div class="actions flex justify-end gap-2">
+      <RouterLink class="item-link" :to="djContactLink">Contact</RouterLink>
+      <RouterLink class="item-link" :to="djDetailsLink"
+        >View Details</RouterLink
+      >
     </div>
   </li>
 </template>
@@ -51,5 +53,9 @@ const djDetailsLink = computed(() => {
 a:active,
 a:hover {
   @apply text-yellow-300 duration-200;
+}
+
+.item-link {
+  @apply w-28 rounded-md border-2 border-yellow-300 bg-yellow-300 p-2 text-center text-xs text-slate-900 shadow-lg duration-200 hover:bg-slate-600 hover:text-yellow-300;
 }
 </style>

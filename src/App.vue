@@ -7,3 +7,9 @@ import TheHeader from './components/layout/TheHeader.vue';
   <TheHeader />
   <RouterView />
 </template>
+
+<style>
+body {
+  @apply bg-gray-50;
+}
+</style>
