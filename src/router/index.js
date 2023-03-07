@@ -13,6 +13,7 @@ const router = createRouter({
     {
       path: '/djs/:id',
       component: DjDetail,
+      props: true,
       children: [{ path: 'contact', component: ContactDj }],
     },
     { path: '/register', component: DjRegistration },
