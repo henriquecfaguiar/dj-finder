@@ -1,14 +1,46 @@
 <script setup>
+import { ref, computed } from 'vue';
 import { useDjsStore } from '@/stores/djs.js';
 import DjItem from '../../components/djs/DjItem.vue';
+import DjFilter from '../../components/djs/DjFilter.vue';
 
 const store = useDjsStore();
 const djsList = store.djs;
 const hasDjs = store.hasDjs;
+const activeFilters = ref({
+  house: true,
+  'hip-hop': true,
+  pop: true,
+  trap: true,
+});
+
+function setFilter(updatedFilters) {
+  activeFilters.value = updatedFilters;
+}
+
+const filteredDjs = computed(() => {
+  return djsList.filter((dj) => {
+    if (activeFilters.value.house && dj.genres.includes('house')) {
+      return true;
+    }
+    if (activeFilters.value['hip-hop'] && dj.genres.includes('hip-hop')) {
+      return true;
+    }
+    if (activeFilters.value.pop && dj.genres.includes('pop')) {
+      return true;
+    }
+    if (activeFilters.value.trap && dj.genres.includes('trap')) {
+      return true;
+    }
+    return false;
+  });
+});
 </script>
 
 <template>
-  <section>Filter</section>
+  <section>
+    <DjFilter @change-filter="setFilter" />
+  </section>
   <base-card>
     <section>
       <div class="controls mb-4 flex justify-between">
@@ -19,7 +51,7 @@ const hasDjs = store.hasDjs;
       </div>
       <ul class="space-y-6" v-if="hasDjs">
         <DjItem
-          v-for="dj in djsList"
+          v-for="dj in filteredDjs"
           :key="dj.id"
           :id="dj.id"
           :artist-name="dj.artistName"

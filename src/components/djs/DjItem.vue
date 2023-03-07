@@ -61,6 +61,6 @@ a:hover {
 }
 
 .item-link {
-  @apply w-28 rounded-md border-2 border-yellow-300 bg-yellow-300 p-2 text-center text-xs text-slate-900 shadow-lg duration-200 hover:bg-slate-600 hover:text-yellow-300;
+  @apply w-28 rounded-md border-2 border-yellow-300 bg-yellow-300 p-2 text-center text-xs text-slate-900 shadow-lg duration-200  hover:bg-transparent hover:text-yellow-300;
 }
 </style>

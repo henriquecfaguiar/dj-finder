@@ -22,21 +22,21 @@ const text = computed(() => {
 
 <style scoped>
 .badge {
-  @apply mr-2 rounded-full px-4 py-2 text-sm;
+  @apply mr-2 rounded-full px-4 py-1 text-sm;
 }
 
 .hip-hop {
-  @apply bg-red-500;
+  @apply bg-red-600;
 }
 
 .pop {
-  @apply bg-sky-500;
+  @apply bg-sky-600;
 }
 
 .trap {
-  @apply bg-amber-500;
+  @apply bg-amber-600;
 }
 .house {
-  @apply bg-purple-500;
+  @apply bg-purple-600;
 }
 </style>
