@@ -24,19 +24,19 @@ function setFilter(event) {
   <base-card>
     <h2 class="text-2xl font-bold">What genres are you looking for?</h2>
     <div class="space-x-4">
-      <span>
+      <span class="space-x-1">
         <input type="checkbox" id="house" checked @change="setFilter" />
         <label for="house">House</label>
       </span>
-      <span>
+      <span class="space-x-1">
         <input type="checkbox" id="hip-hop" checked @change="setFilter" />
         <label for="hip-hop">Hip-Hop</label>
       </span>
-      <span>
+      <span class="space-x-1">
         <input type="checkbox" id="pop" checked @change="setFilter" />
         <label for="pop">Pop</label>
       </span>
-      <span>
+      <span class="space-x-1">
         <input type="checkbox" id="trap" checked @change="setFilter" />
         <label for="trap">Trap</label>
       </span>

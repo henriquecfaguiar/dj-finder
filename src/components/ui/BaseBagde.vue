@@ -22,7 +22,7 @@ const text = computed(() => {
 
 <style scoped>
 .badge {
-  @apply mr-2 rounded-full px-4 py-1 text-sm;
+  @apply mr-2 rounded-full px-4 py-1 text-sm text-white;
 }
 
 .hip-hop {

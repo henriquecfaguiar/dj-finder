@@ -30,7 +30,7 @@ const props = defineProps({
 <style scoped>
 button,
 a {
-  @apply w-fit rounded-full px-6 py-2 text-center shadow-lg duration-200 hover:scale-105;
+  @apply w-fit rounded-full px-6 py-2 text-center shadow-lg duration-150 ease-linear hover:scale-110;
 }
 
 button.yellow,
