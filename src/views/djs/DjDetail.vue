@@ -1,9 +1,9 @@
 <script setup>
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { useDjsStore } from '@/stores/djs.js';
+import { useDjStore } from '@/stores/DjStore.js';
 
-const djstore = useDjsStore();
+const djstore = useDjStore();
 const props = defineProps(['id']);
 const route = useRoute();
 

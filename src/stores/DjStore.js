@@ -1,7 +1,8 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
-export const useDjsStore = defineStore('djs', () => {
+export const useDjStore = defineStore('djs', () => {
+  const userId = ref('d3');
   const djs = ref([
     {
       id: 'd1',
@@ -25,7 +26,22 @@ export const useDjsStore = defineStore('djs', () => {
     return djs.value.length > 0;
   });
 
-  return { djs, hasDjs };
+  function appendDj(data) {
+    const newDj = {
+      id: userId.value,
+      artistName: data.artistName,
+      genres: data.genres,
+      description: data.description,
+      hourlyRate: data.hourlyRate,
+    };
+    djs.value.push(newDj);
+  }
+
+  const isDj = computed(() => {
+    return djs.value.some((dj) => dj.id === userId.value);
+  });
+
+  return { djs, hasDjs, appendDj, userId, isDj };
 });
 
 export default {};

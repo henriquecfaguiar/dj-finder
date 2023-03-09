@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+const emits = defineEmits(['save-data']);
 
 const artistName = ref('');
 const rate = ref(null);
@@ -13,8 +14,7 @@ function submitForm() {
     description: description.value,
     genres: genres.value,
   };
-
-  console.log(formData);
+  emits('save-data', formData);
 }
 </script>
 
@@ -50,6 +50,7 @@ function submitForm() {
         v-model.trim="description"
       ></textarea>
     </div>
+    <!-- Genres -->
     <div>
       <label class="label-titles" for="genres">Genres of Expertise</label>
       <div class="mt-2 flex flex-col">

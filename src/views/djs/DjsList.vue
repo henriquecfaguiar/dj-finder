@@ -1,12 +1,12 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { useDjsStore } from '@/stores/djs.js';
+import { useDjStore } from '@/stores/DjStore.js';
 import DjItem from '../../components/djs/DjItem.vue';
 import DjFilter from '../../components/djs/DjFilter.vue';
 
-const store = useDjsStore();
-const djsList = store.djs;
-const hasDjs = store.hasDjs;
+const djStore = useDjStore();
+const djsList = djStore.djs;
+const hasDjs = djStore.hasDjs;
 const activeFilters = ref({
   house: true,
   'hip-hop': true,
@@ -45,7 +45,7 @@ const filteredDjs = computed(() => {
     <section>
       <div class="controls mb-4 flex justify-between">
         <base-button color="green">Refresh</base-button>
-        <base-button link color="yellow" to="/register"
+        <base-button v-if="!djStore.isDj" link color="yellow" to="/register"
           >Register as DJ</base-button
         >
       </div>

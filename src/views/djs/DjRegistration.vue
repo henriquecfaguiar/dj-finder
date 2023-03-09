@@ -1,10 +1,20 @@
 <script setup>
 import DjForm from '../../components/djs/DjForm.vue';
+import { useDjStore } from '@/stores/DjStore.js';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const djStore = useDjStore();
+
+function saveData(data) {
+  djStore.appendDj(data);
+  router.replace('/djs');
+}
 </script>
 
 <template>
   <base-card>
     <h2 class="mb-10 text-2xl font-bold">Register as a DJ now!</h2>
-    <DjForm />
+    <DjForm @save-data="saveData" />
   </base-card>
 </template>
