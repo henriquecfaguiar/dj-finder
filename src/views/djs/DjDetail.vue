@@ -36,7 +36,7 @@ const djContactLink = computed(() => {
   <section>
     <base-card>
       <header>
-        <h2 class="text-xl">Interested? Reach out now!</h2>
+        <h2 class="text-lg">Interested? Reach out now!</h2>
         <base-button link class="mt-2 block" :to="djContactLink" color="yellow"
           >Contact</base-button
         >
