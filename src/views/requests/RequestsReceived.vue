@@ -1,10 +1,15 @@
 <script setup>
 import RequestItem from '../../components/requests/RequestItem.vue';
 import { computed } from 'vue';
+import { useDjStore } from '../../stores/DjStore';
 import { useRequestsStore } from '../../stores/RequestsStore';
 
+const djStore = useDjStore();
 const requestsStore = useRequestsStore();
-const requests = requestsStore.requests;
+const unfilteredRequests = requestsStore.requests;
+const requests = unfilteredRequests.filter(
+  (request) => request.djId === djStore.userId
+);
 const isRequestsEmpty = computed(() => {
   return !requests.length;
 });
@@ -19,7 +24,7 @@ const isRequestsEmpty = computed(() => {
       <ul class="space-y-6" v-if="!isRequestsEmpty">
         <RequestItem
           v-for="request in requests"
-          :key="request.djID"
+          :key="request.djId"
           :email="request.email"
           :message="request.message"
         />

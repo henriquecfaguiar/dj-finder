@@ -34,7 +34,7 @@ function submitForm() {
     return;
   }
   const formData = {
-    id: route.params.id,
+    djId: route.params.id,
     email: email.value.val,
     message: message.value.val,
   };

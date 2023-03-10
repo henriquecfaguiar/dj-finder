@@ -2,7 +2,7 @@ import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useDjStore = defineStore('djs', () => {
-  const userId = ref('d3');
+  const userId = ref('d1');
   const djs = ref([
     {
       id: 'd1',
