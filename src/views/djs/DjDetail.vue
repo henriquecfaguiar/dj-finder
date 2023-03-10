@@ -7,6 +7,9 @@ const djstore = useDjStore();
 const props = defineProps(['id']);
 const route = useRoute();
 
+const isContact = computed(() => {
+  return route.path.endsWith('/contact');
+});
 const selectedDj = djstore.djs.find((dj) => dj.id === props.id);
 
 const artistName = computed(() => {
@@ -36,8 +39,13 @@ const djContactLink = computed(() => {
   <section>
     <base-card>
       <header>
-        <h2 class="text-lg">Interested? Reach out now!</h2>
-        <base-button link class="mt-2 block" :to="djContactLink" color="yellow"
+        <h2 class="text-xl font-bold">Interested? Reach out now!</h2>
+        <base-button
+          v-if="!isContact"
+          link
+          class="mt-2 block"
+          :to="djContactLink"
+          color="yellow"
           >Contact</base-button
         >
       </header>
