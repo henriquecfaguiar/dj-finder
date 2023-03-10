@@ -16,7 +16,7 @@ const message = ref({
   isValid: true,
 });
 const formIsValid = ref(true);
-const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,5})(\.[a-z]{2,5})?$/;
+const emailRegex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,5})(\.[a-z]{2,5})?$/;
 
 function submitForm() {
   formIsValid.value = true;
