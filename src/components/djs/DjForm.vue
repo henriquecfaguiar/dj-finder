@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-const emits = defineEmits(['save-data']);
 
+const emits = defineEmits(['save-data']);
 const artistName = ref({
   val: '',
   isValid: true,

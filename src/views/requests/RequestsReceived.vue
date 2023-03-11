@@ -1,8 +1,8 @@
 <script setup>
-import RequestItem from '../../components/requests/RequestItem.vue';
 import { computed } from 'vue';
 import { useDjStore } from '../../stores/DjStore';
 import { useRequestsStore } from '../../stores/RequestsStore';
+import RequestItem from '../../components/requests/RequestItem.vue';
 
 const djStore = useDjStore();
 const requestsStore = useRequestsStore();

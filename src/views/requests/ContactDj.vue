@@ -3,7 +3,7 @@ import { useRequestsStore } from '../../stores/RequestsStore';
 import { useRoute, useRouter } from 'vue-router';
 import { ref } from 'vue';
 
-const requestsStore = useRequestsStore();
+const store = useRequestsStore();
 const route = useRoute();
 const router = useRouter();
 
@@ -38,7 +38,7 @@ function submitForm() {
     email: email.value.val,
     message: message.value.val,
   };
-  requestsStore.storeRequest(formData);
+  store.storeRequest(formData);
   router.replace('/djs');
 }
 </script>

@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
+
 const props = defineProps({
   id: {
     type: String,

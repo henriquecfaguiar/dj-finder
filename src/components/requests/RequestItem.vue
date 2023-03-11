@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue';
+
 const props = defineProps(['email', 'message']);
 const emailLink = computed(() => {
   return `mailto:${props.email}`;

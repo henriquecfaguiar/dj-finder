@@ -3,14 +3,14 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useDjStore } from '@/stores/DjStore.js';
 
-const djstore = useDjStore();
+const store = useDjStore();
 const props = defineProps(['id']);
 const route = useRoute();
 
 const isContact = computed(() => {
   return route.path.endsWith('/contact');
 });
-const selectedDj = djstore.djs.find((dj) => dj.id === props.id);
+const selectedDj = store.djs.find((dj) => dj.id === props.id);
 
 const artistName = computed(() => {
   return selectedDj.artistName;

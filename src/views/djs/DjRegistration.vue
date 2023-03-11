@@ -4,10 +4,10 @@ import { useDjStore } from '@/stores/DjStore.js';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const djStore = useDjStore();
+const store = useDjStore();
 
 function saveData(data) {
-  djStore.registerDj(data);
+  store.registerDj(data);
   router.replace('/djs');
 }
 </script>

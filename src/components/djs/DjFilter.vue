@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+
 const emits = defineEmits(['change-filter']);
 const filters = ref({
   house: true,
