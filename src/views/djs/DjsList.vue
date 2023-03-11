@@ -1,12 +1,13 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
 import { useDjStore } from '@/stores/DjStore.js';
 import DjItem from '../../components/djs/DjItem.vue';
 import DjFilter from '../../components/djs/DjFilter.vue';
 
-const djStore = useDjStore();
-const djsList = djStore.djs;
-const hasDjs = djStore.hasDjs;
+const store = useDjStore();
+const { djs, hasDjs, isDj } = storeToRefs(store);
+const { getDjData } = store;
 const activeFilters = ref({
   house: true,
   'hip-hop': true,
@@ -19,7 +20,7 @@ function setFilter(updatedFilters) {
 }
 
 const filteredDjs = computed(() => {
-  return djsList.filter((dj) => {
+  return djs.value.filter((dj) => {
     if (activeFilters.value.house && dj.genres.includes('house')) {
       return true;
     }
@@ -35,6 +36,9 @@ const filteredDjs = computed(() => {
     return false;
   });
 });
+onMounted(() => {
+  getDjData();
+});
 </script>
 
 <template>
@@ -44,8 +48,8 @@ const filteredDjs = computed(() => {
   <base-card>
     <section>
       <div class="controls mb-4 flex justify-between">
-        <base-button color="green">Refresh</base-button>
-        <base-button v-if="!djStore.isDj" link color="yellow" to="/register"
+        <base-button color="green" @click="getDjData()">Refresh</base-button>
+        <base-button v-if="!isDj" link color="yellow" to="/register"
           >Register as DJ</base-button
         >
       </div>
@@ -59,7 +63,7 @@ const filteredDjs = computed(() => {
           :genres="dj.genres"
         />
       </ul>
-      <p v-else>No DJ's found.</p>
+      <p class="text-lg" v-else>No DJ's found.</p>
     </section>
   </base-card>
 </template>

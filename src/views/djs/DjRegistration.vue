@@ -7,7 +7,7 @@ const router = useRouter();
 const djStore = useDjStore();
 
 function saveData(data) {
-  djStore.appendDj(data);
+  djStore.registerDj(data);
   router.replace('/djs');
 }
 </script>

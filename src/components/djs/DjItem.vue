@@ -39,7 +39,7 @@ const djDetailsLink = computed(() => {
     <h4 class="font-bold text-yellow-300">{{ `$${rate}/hour` }}</h4>
     <div class="mt-2">
       <base-badge
-        v-for="genre in props.genres"
+        v-for="genre in genres"
         :key="genre"
         :type="genre"
         :title="genre"
