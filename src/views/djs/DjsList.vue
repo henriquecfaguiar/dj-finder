@@ -6,7 +6,7 @@ import DjItem from '../../components/djs/DjItem.vue';
 import DjFilter from '../../components/djs/DjFilter.vue';
 
 const store = useDjStore();
-const { djs, hasDjs, isDj } = storeToRefs(store);
+const { djs, hasDjs, isDj, isLoading } = storeToRefs(store);
 const { getDjData } = store;
 const activeFilters = ref({
   house: true,
@@ -49,11 +49,18 @@ onMounted(() => {
     <section>
       <div class="controls mb-4 flex justify-between">
         <base-button color="green" @click="getDjData()">Refresh</base-button>
-        <base-button v-if="!isDj" link color="yellow" to="/register"
+        <base-button
+          v-if="!isDj && !isLoading"
+          link
+          color="yellow"
+          to="/register"
           >Register as DJ</base-button
         >
       </div>
-      <ul class="space-y-6" v-if="hasDjs">
+      <div v-if="isLoading">
+        <base-spinner></base-spinner>
+      </div>
+      <ul class="space-y-6" v-else-if="hasDjs">
         <DjItem
           v-for="dj in filteredDjs"
           :key="dj.id"

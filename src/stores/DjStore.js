@@ -7,6 +7,7 @@ export const useDjStore = defineStore('djs', () => {
   const isDj = computed(() => {
     return djs.value.some((dj) => dj.id === userId.value);
   });
+  const isLoading = ref(false);
 
   async function registerDj(data) {
     try {
@@ -30,10 +31,12 @@ export const useDjStore = defineStore('djs', () => {
 
   async function getDjData() {
     try {
+      isLoading.value = true;
       const response = await fetch(
         `https://dj-finder-f8faf-default-rtdb.firebaseio.com/djs.json`
       );
       const responseData = await response.json();
+      isLoading.value = false;
       const updatedDjs = [];
       for (const key in responseData) {
         const dj = {
@@ -52,10 +55,10 @@ export const useDjStore = defineStore('djs', () => {
   }
 
   const hasDjs = computed(() => {
-    return djs.value.length > 0;
+    return !isLoading.value && djs.value.length > 0;
   });
 
-  return { djs, registerDj, userId, hasDjs, isDj, getDjData };
+  return { djs, registerDj, userId, hasDjs, isDj, getDjData, isLoading };
 });
 
 export default {};
