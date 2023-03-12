@@ -41,7 +41,11 @@ const filteredDjs = computed(() => {
   });
 });
 onMounted(() => {
-  getDjData();
+  if (hasDjs.value) {
+    return;
+  } else {
+    getDjData();
+  }
 });
 </script>
 

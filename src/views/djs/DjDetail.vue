@@ -38,6 +38,19 @@ const djContactLink = computed(() => {
   </section>
   <section>
     <base-card>
+      <div>
+        <base-badge
+          v-for="genre in genres"
+          :key="genre"
+          :type="genre"
+          :title="genre"
+        ></base-badge>
+      </div>
+      <p>{{ selectedDj.description }}</p>
+    </base-card>
+  </section>
+  <section>
+    <base-card>
       <header>
         <h2 class="text-xl font-bold">Interested? Reach out now!</h2>
         <base-button
@@ -50,19 +63,6 @@ const djContactLink = computed(() => {
         >
       </header>
       <Router-View />
-    </base-card>
-  </section>
-  <section>
-    <base-card>
-      <div>
-        <base-badge
-          v-for="genre in genres"
-          :key="genre"
-          :type="genre"
-          :title="genre"
-        ></base-badge>
-      </div>
-      <p>{{ selectedDj.description }}</p>
     </base-card>
   </section>
 </template>

@@ -1,27 +1,34 @@
 <script setup>
-import { computed } from 'vue';
-import { useDjStore } from '../../stores/DjStore';
+import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
 import { useRequestsStore } from '../../stores/RequestsStore';
 import RequestItem from '../../components/requests/RequestItem.vue';
-
-const djStore = useDjStore();
+import BaseSpinner from '../../components/ui/BaseSpinner.vue';
 const requestsStore = useRequestsStore();
-const unfilteredRequests = requestsStore.requests;
-const requests = unfilteredRequests.filter(
-  (request) => request.djId === djStore.userId
-);
-const isRequestsEmpty = computed(() => {
-  return !requests.length;
+
+const { isLoading, requests, hasRequests, error } = storeToRefs(requestsStore);
+const { getRequests } = requestsStore;
+
+function handleError() {
+  error.value = null;
+}
+
+onMounted(() => {
+  getRequests();
 });
 </script>
 
 <template>
+  <base-dialog :show="!!error" title="An error ocurred!" @close="handleError">
+    <p>{{ error }}</p>
+  </base-dialog>
   <section>
     <base-card>
       <header>
         <h2 class="text-2xl font-bold">Requests Received</h2>
       </header>
-      <ul class="space-y-6" v-if="!isRequestsEmpty">
+      <base-spinner v-if="isLoading"></base-spinner>
+      <ul class="space-y-6" v-else-if="hasRequests || isLoading">
         <RequestItem
           v-for="request in requests"
           :key="request.djId"
