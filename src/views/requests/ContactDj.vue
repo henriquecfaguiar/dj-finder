@@ -44,39 +44,41 @@ function submitForm() {
 </script>
 
 <template>
-  <form class="space-y-4" @submit.prevent="submitForm">
-    <div class="form-control">
-      <label :class="{ 'invalid-label': !email.isValid }" for="email"
-        >E-Mail</label
-      >
-      <input
-        class="custom-inputs"
-        type="text"
-        id="email"
-        v-model.trim="email.val"
-        :class="{ 'invalid-input': !email.isValid }"
-      />
-      <p class="error-message" v-if="!email.isValid">
-        Please enter a valid email address.
-      </p>
-    </div>
-    <div class="form-control">
-      <label :class="{ 'invalid-label': !message.isValid }" for="message"
-        >Message</label
-      >
-      <textarea
-        class="custom-inputs"
-        id="message"
-        rows="5"
-        v-model.trim="message.val"
-        :class="{ 'invalid-input': !message.isValid }"
-      ></textarea>
-      <p class="error-message" v-if="!message.isValid">
-        Message must not be empty.
-      </p>
-    </div>
-    <base-button class="mt-4" color="yellow">Send Message</base-button>
-  </form>
+  <div>
+    <form class="space-y-4" @submit.prevent="submitForm">
+      <div class="form-control">
+        <label :class="{ 'invalid-label': !email.isValid }" for="email"
+          >E-Mail</label
+        >
+        <input
+          class="custom-inputs"
+          type="text"
+          id="email"
+          v-model.trim="email.val"
+          :class="{ 'invalid-input': !email.isValid }"
+        />
+        <p class="error-message" v-if="!email.isValid">
+          Please enter a valid email address.
+        </p>
+      </div>
+      <div class="form-control">
+        <label :class="{ 'invalid-label': !message.isValid }" for="message"
+          >Message</label
+        >
+        <textarea
+          class="custom-inputs"
+          id="message"
+          rows="5"
+          v-model.trim="message.val"
+          :class="{ 'invalid-input': !message.isValid }"
+        ></textarea>
+        <p class="error-message" v-if="!message.isValid">
+          Message must not be empty.
+        </p>
+      </div>
+      <base-button class="mt-4" color="yellow">Send Message</base-button>
+    </form>
+  </div>
 </template>
 
 <style scoped>

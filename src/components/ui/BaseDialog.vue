@@ -27,21 +27,23 @@ function tryClose() {
 <template>
   <teleport to="body">
     <div v-if="props.show" @click="tryClose" class="backdrop"></div>
-    <dialog open v-if="props.show">
-      <header>
-        <slot name="header">
-          <h2 class="text-xl text-white">{{ props.title }}</h2>
-        </slot>
-      </header>
-      <section>
-        <slot></slot>
-      </section>
-      <menu v-if="!props.fixed">
-        <slot name="actions">
-          <base-button color="yellow" @click="tryClose">Close</base-button>
-        </slot>
-      </menu>
-    </dialog>
+    <transition name="dialog">
+      <dialog open v-if="props.show">
+        <header>
+          <slot name="header">
+            <h2 class="text-xl text-white">{{ props.title }}</h2>
+          </slot>
+        </header>
+        <section>
+          <slot></slot>
+        </section>
+        <menu v-if="!props.fixed">
+          <slot name="actions">
+            <base-button color="yellow" @click="tryClose">Close</base-button>
+          </slot>
+        </menu>
+      </dialog>
+    </transition>
   </teleport>
 </template>
 
@@ -79,6 +81,20 @@ header {
 
 header h2 {
   margin: 0;
+}
+
+.dialog-enter-from,
+.dialog-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.dialog-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.dialog-leave-active {
+  transition: all 0.3s ease-in;
 }
 
 section {

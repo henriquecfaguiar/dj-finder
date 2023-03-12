@@ -50,38 +50,40 @@ onMounted(() => {
 </script>
 
 <template>
-  <base-dialog :show="!!error" title="An error ocurred!" @close="handleError">
-    <p>{{ error }}</p>
-  </base-dialog>
-  <section>
-    <DjFilter @change-filter="setFilter" />
-  </section>
-  <base-card>
+  <div>
+    <base-dialog :show="!!error" title="An error ocurred!" @close="handleError">
+      <p>{{ error }}</p>
+    </base-dialog>
     <section>
-      <div class="controls mb-4 flex justify-between">
-        <base-button color="green" @click="getDjData()">Refresh</base-button>
-        <base-button
-          v-if="!isDj && !isLoading"
-          link
-          color="yellow"
-          to="/register"
-          >Register as DJ</base-button
-        >
-      </div>
-      <div v-if="isLoading">
-        <base-spinner></base-spinner>
-      </div>
-      <ul class="space-y-6" v-else-if="hasDjs">
-        <DjItem
-          v-for="dj in filteredDjs"
-          :key="dj.id"
-          :id="dj.id"
-          :artist-name="dj.artistName"
-          :rate="dj.hourlyRate"
-          :genres="dj.genres"
-        />
-      </ul>
-      <p class="text-lg" v-else>No DJ's found.</p>
+      <DjFilter @change-filter="setFilter" />
     </section>
-  </base-card>
+    <base-card>
+      <section>
+        <div class="controls mb-4 flex justify-between">
+          <base-button color="green" @click="getDjData()">Refresh</base-button>
+          <base-button
+            v-if="!isDj && !isLoading"
+            link
+            color="yellow"
+            to="/register"
+            >Register as DJ</base-button
+          >
+        </div>
+        <div v-if="isLoading">
+          <base-spinner></base-spinner>
+        </div>
+        <ul class="space-y-6" v-else-if="hasDjs">
+          <DjItem
+            v-for="dj in filteredDjs"
+            :key="dj.id"
+            :id="dj.id"
+            :artist-name="dj.artistName"
+            :rate="dj.hourlyRate"
+            :genres="dj.genres"
+          />
+        </ul>
+        <p class="text-lg" v-else>No DJ's found.</p>
+      </section>
+    </base-card>
+  </div>
 </template>

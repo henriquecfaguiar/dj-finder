@@ -30,39 +30,41 @@ const djContactLink = computed(() => {
 </script>
 
 <template>
-  <section>
-    <base-card>
-      <h2 class="text-2xl font-bold">{{ artistName }}</h2>
-      <h3 class="text-xl font-bold">{{ `$${rate}/hour` }}</h3>
-    </base-card>
-  </section>
-  <section>
-    <base-card>
-      <div>
-        <base-badge
-          v-for="genre in genres"
-          :key="genre"
-          :type="genre"
-          :title="genre"
-        ></base-badge>
-      </div>
-      <p>{{ selectedDj.description }}</p>
-    </base-card>
-  </section>
-  <section>
-    <base-card>
-      <header>
-        <h2 class="text-xl font-bold">Interested? Reach out now!</h2>
-        <base-button
-          v-if="!isContact"
-          link
-          class="mt-2 block"
-          :to="djContactLink"
-          color="yellow"
-          >Contact</base-button
-        >
-      </header>
-      <Router-View />
-    </base-card>
-  </section>
+  <div>
+    <section>
+      <base-card>
+        <h2 class="text-2xl font-bold">{{ artistName }}</h2>
+        <h3 class="text-xl font-bold">{{ `$${rate}/hour` }}</h3>
+      </base-card>
+    </section>
+    <section>
+      <base-card>
+        <div>
+          <base-badge
+            v-for="genre in genres"
+            :key="genre"
+            :type="genre"
+            :title="genre"
+          ></base-badge>
+        </div>
+        <p>{{ selectedDj.description }}</p>
+      </base-card>
+    </section>
+    <section>
+      <base-card>
+        <header>
+          <h2 class="text-xl font-bold">Interested? Reach out now!</h2>
+          <base-button
+            v-if="!isContact"
+            link
+            class="mt-2 block"
+            :to="djContactLink"
+            color="yellow"
+            >Contact</base-button
+          >
+        </header>
+        <Router-View />
+      </base-card>
+    </section>
+  </div>
 </template>
