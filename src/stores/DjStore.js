@@ -9,6 +9,7 @@ export const useDjStore = defineStore('djs', () => {
     return djs.value.some((dj) => dj.id === userId.value);
   });
   const isLoading = ref(false);
+  const error = ref(null);
 
   async function registerDj(data) {
     try {
@@ -25,8 +26,8 @@ export const useDjStore = defineStore('djs', () => {
           body: JSON.stringify(djData),
         }
       );
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      error.value = 'Failed to fetch data.';
     }
   }
 
@@ -50,8 +51,8 @@ export const useDjStore = defineStore('djs', () => {
         updatedDjs.push(dj);
       }
       djs.value = updatedDjs;
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      error.value = e.message || 'Failed to fetch data.';
     }
   }
 
@@ -59,7 +60,7 @@ export const useDjStore = defineStore('djs', () => {
     return !isLoading.value && djs.value.length > 0;
   });
 
-  return { djs, registerDj, userId, hasDjs, isDj, getDjData, isLoading };
+  return { djs, registerDj, userId, hasDjs, isDj, getDjData, isLoading, error };
 });
 
 export default {};

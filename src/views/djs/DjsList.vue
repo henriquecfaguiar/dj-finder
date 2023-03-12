@@ -6,7 +6,7 @@ import DjItem from '../../components/djs/DjItem.vue';
 import DjFilter from '../../components/djs/DjFilter.vue';
 
 const store = useDjStore();
-const { djs, hasDjs, isDj, isLoading } = storeToRefs(store);
+const { djs, hasDjs, isDj, isLoading, error } = storeToRefs(store);
 const { getDjData } = store;
 const activeFilters = ref({
   house: true,
@@ -17,6 +17,10 @@ const activeFilters = ref({
 
 function setFilter(updatedFilters) {
   activeFilters.value = updatedFilters;
+}
+
+function handleError() {
+  error.value = null;
 }
 
 const filteredDjs = computed(() => {
@@ -42,6 +46,9 @@ onMounted(() => {
 </script>
 
 <template>
+  <base-dialog :show="!!error" title="An error ocurred!" @close="handleError">
+    <p>{{ error }}</p>
+  </base-dialog>
   <section>
     <DjFilter @change-filter="setFilter" />
   </section>
