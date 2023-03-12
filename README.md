@@ -1,2 +1,2 @@
 # DJ Finder App
-Find a DJ for you next event
+Find a DJ for your next event
