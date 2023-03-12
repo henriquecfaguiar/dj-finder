@@ -2,7 +2,8 @@ import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useDjStore = defineStore('djs', () => {
-  const userId = ref('d10');
+  // TODO proper authentication
+  const userId = ref(`d${Math.floor(Math.random() * 1000)}`);
   const djs = ref([]);
   const isDj = computed(() => {
     return djs.value.some((dj) => dj.id === userId.value);
