@@ -47,7 +47,7 @@ export const useRequestsStore = defineStore('requests', () => {
       }
       requests.value = updatedRequests;
     } catch (err) {
-      error.value = 'Failed to load data. ' + err;
+      error.value = 'Failed to load data.' + err;
     } finally {
       isLoading.value = false;
     }
