@@ -25,19 +25,7 @@ function handleError() {
 
 const filteredDjs = computed(() => {
   return djs.value.filter((dj) => {
-    if (activeFilters.value.house && dj.genres.includes('house')) {
-      return true;
-    }
-    if (activeFilters.value['hip-hop'] && dj.genres.includes('hip-hop')) {
-      return true;
-    }
-    if (activeFilters.value.pop && dj.genres.includes('pop')) {
-      return true;
-    }
-    if (activeFilters.value.trap && dj.genres.includes('trap')) {
-      return true;
-    }
-    return false;
+    return dj.genres.some((djGenre) => activeFilters.value[djGenre]);
   });
 });
 onMounted(() => {

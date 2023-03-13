@@ -10,18 +10,20 @@ const route = useRoute();
 const isContact = computed(() => {
   return route.path.endsWith('/contact');
 });
-const selectedDj = store.djs.find((dj) => dj.id === props.id);
+const selectedDj = computed(() => {
+  return store.djs.find((dj) => dj.id === props.id);
+});
 
 const artistName = computed(() => {
-  return selectedDj.artistName;
+  return selectedDj.value.artistName;
 });
 
 const rate = computed(() => {
-  return selectedDj.hourlyRate;
+  return selectedDj.value.hourlyRate;
 });
 
 const genres = computed(() => {
-  return selectedDj.genres;
+  return selectedDj.value.genres;
 });
 
 const djContactLink = computed(() => {

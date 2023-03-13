@@ -38,7 +38,6 @@ export const useDjStore = defineStore('djs', () => {
         `https://dj-finder-f8faf-default-rtdb.firebaseio.com/djs.json`
       );
       const responseData = await response.json();
-      isLoading.value = false;
       const updatedDjs = [];
       for (const key in responseData) {
         const dj = {
@@ -53,6 +52,8 @@ export const useDjStore = defineStore('djs', () => {
       djs.value = updatedDjs;
     } catch (e) {
       error.value = e.message || 'Failed to fetch data.';
+    } finally {
+      isLoading.value = false;
     }
   }
 
