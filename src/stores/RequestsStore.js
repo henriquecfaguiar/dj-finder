@@ -33,6 +33,9 @@ export const useRequestsStore = defineStore('requests', () => {
         `https://dj-finder-f8faf-default-rtdb.firebaseio.com/requests/${store.userId}.json`
       );
       const responseData = await response.json();
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
       const updatedRequests = [];
       for (const key in responseData) {
         const request = {
@@ -43,8 +46,8 @@ export const useRequestsStore = defineStore('requests', () => {
         updatedRequests.push(request);
       }
       requests.value = updatedRequests;
-    } catch (e) {
-      error.value = e.message || 'Failed to fetch data.';
+    } catch (err) {
+      error.value = 'Failed to load data. ' + err;
     } finally {
       isLoading.value = false;
     }

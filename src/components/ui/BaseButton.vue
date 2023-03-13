@@ -39,7 +39,7 @@ a.yellow {
 }
 
 button.green,
-a.slate {
+a.green {
   @apply bg-green-400 text-white hover:bg-green-500;
 }
 </style>

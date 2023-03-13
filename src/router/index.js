@@ -5,6 +5,7 @@ import DjRegistration from '../views/djs/DjRegistration.vue';
 import DjDetail from '../views/djs/DjDetail.vue';
 import ContactDj from '../views/requests/ContactDj.vue';
 import NotFound from '../views/NotFound.vue';
+import UserAuth from '../views/auth/UserAuth.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,7 @@ const router = createRouter({
     },
     { path: '/register', component: DjRegistration },
     { path: '/requests', component: RequestsReceived },
+    { path: '/auth', component: UserAuth },
     { path: '/:notFound(.*)', component: NotFound },
   ],
 });
