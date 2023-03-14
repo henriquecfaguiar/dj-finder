@@ -4,6 +4,7 @@ import { useAuthStore } from '../../stores/AuthStore';
 
 const store = useAuthStore();
 const { isLoggedIn } = storeToRefs(store);
+const { logout } = store;
 </script>
 
 <template>
@@ -16,13 +17,18 @@ const { isLoggedIn } = storeToRefs(store);
       >
         <RouterLink to="/">Find a DJ</RouterLink>
       </h1>
-      <ul class="flex gap-4 text-lg md:text-xl">
+      <ul
+        class="flex flex-col items-center gap-4 text-lg md:flex-row md:text-xl"
+      >
         <li><RouterLink to="/djs">All DJ's</RouterLink></li>
         <li v-if="isLoggedIn">
           <RouterLink to="/requests">Requests</RouterLink>
         </li>
         <li v-else>
           <RouterLink to="/auth">Login</RouterLink>
+        </li>
+        <li v-if="isLoggedIn">
+          <base-button @click="logout" color="yellow">Logout</base-button>
         </li>
       </ul>
     </nav>
