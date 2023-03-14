@@ -23,24 +23,30 @@ function setFilter(event) {
 
 <template>
   <base-card>
-    <h2 class="text-2xl font-bold">What genres are you looking for?</h2>
-    <div class="space-x-4">
-      <span class="space-x-1">
-        <input type="checkbox" id="house" checked @change="setFilter" />
-        <label for="house">House</label>
-      </span>
-      <span class="space-x-1">
-        <input type="checkbox" id="hip-hop" checked @change="setFilter" />
-        <label for="hip-hop">Hip-Hop</label>
-      </span>
-      <span class="space-x-1">
-        <input type="checkbox" id="pop" checked @change="setFilter" />
-        <label for="pop">Pop</label>
-      </span>
-      <span class="space-x-1">
-        <input type="checkbox" id="trap" checked @change="setFilter" />
-        <label for="trap">Trap</label>
-      </span>
+    <h2 class="text-center text-2xl font-bold md:text-left">
+      What genres are you looking for?
+    </h2>
+    <div class="flex justify-around gap-2 md:justify-start">
+      <div class="flex flex-col gap-2 md:flex-row">
+        <span class="space-x-1">
+          <input type="checkbox" id="house" checked @change="setFilter" />
+          <label for="house">House</label>
+        </span>
+        <span class="space-x-1">
+          <input type="checkbox" id="hip-hop" checked @change="setFilter" />
+          <label for="hip-hop">Hip-Hop</label>
+        </span>
+      </div>
+      <div class="flex flex-col gap-2 md:flex-row">
+        <span class="space-x-1">
+          <input type="checkbox" id="pop" checked @change="setFilter" />
+          <label for="pop">Pop</label>
+        </span>
+        <span class="space-x-1">
+          <input type="checkbox" id="trap" checked @change="setFilter" />
+          <label for="trap">Trap</label>
+        </span>
+      </div>
     </div>
   </base-card>
 </template>
