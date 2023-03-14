@@ -36,9 +36,9 @@ const djDetailsLink = computed(() => {
   <li
     class="flex items-center justify-between rounded-lg border-2 border-slate-600 bg-gradient-to-r from-slate-600 to-slate-700 p-4 text-white shadow-md shadow-slate-700 md:p-6"
   >
-    <div class="space-y-1">
+    <div>
       <h3 class="text-xl">{{ artistName }}</h3>
-      <h4 class="font-bold text-yellow-300">{{ `$${rate}/hour` }}</h4>
+      <h4 class="mb-1 font-bold text-yellow-300">{{ `$${rate}/hour` }}</h4>
       <div class="flex flex-col gap-2 md:flex-row">
         <base-badge
           v-for="genre in genres"
