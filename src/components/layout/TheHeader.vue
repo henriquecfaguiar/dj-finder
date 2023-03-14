@@ -15,7 +15,7 @@ const { logout } = store;
       <div class="group flex flex-col-reverse items-center gap-4 md:flex-row">
         <img
           class="hidden group-hover:cursor-pointer group-hover:text-yellow-300 md:block"
-          src="../../assets/vinyl-disc-icon-md.png"
+          src="../../assets/images/vinyl-disc-icon-md.png"
           alt=""
         />
         <h1
