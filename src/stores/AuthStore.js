@@ -41,7 +41,34 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  return { signUp, error, isLoading };
+  async function login(data) {
+    try {
+      isLoading.value = true;
+      const response = await fetch(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCIJbrJpqyIIRp7qe3TSsKsaOJoStdrGYs',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            email: data.email,
+            password: data.password,
+            returnSecureToken: true,
+          }),
+        }
+      );
+      const responseData = await response.json();
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      setUser(responseData);
+    } catch (err) {
+      error.value =
+        'Authentication failed. Please check your login data. ' + err;
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  return { signUp, error, isLoading, login, userId, token, tokenExpiration };
 });
 
 export default {};

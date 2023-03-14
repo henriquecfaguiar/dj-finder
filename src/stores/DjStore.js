@@ -4,10 +4,9 @@ import { useAuthStore } from './AuthStore';
 
 export const useDjStore = defineStore('djs', () => {
   const store = useAuthStore();
-  const userId = store.userId;
   const djs = ref([]);
   const isDj = computed(() => {
-    return djs.value.some((dj) => dj.id === userId.value);
+    return djs.value.some((dj) => dj.id === store.userId);
   });
   const isLoading = ref(false);
   const error = ref(null);
@@ -21,7 +20,7 @@ export const useDjStore = defineStore('djs', () => {
         hourlyRate: data.hourlyRate,
       };
       await fetch(
-        `https://dj-finder-f8faf-default-rtdb.firebaseio.com/djs/${userId.value}.json`,
+        `https://dj-finder-f8faf-default-rtdb.firebaseio.com/djs/${store.userId}.json?auth=${store.token}`,
         {
           method: 'PUT',
           body: JSON.stringify(djData),
@@ -62,7 +61,7 @@ export const useDjStore = defineStore('djs', () => {
     return !isLoading.value && djs.value.length > 0;
   });
 
-  return { djs, registerDj, userId, hasDjs, isDj, getDjData, isLoading, error };
+  return { djs, registerDj, hasDjs, isDj, getDjData, isLoading, error };
 });
 
 export default {};

@@ -7,7 +7,7 @@ import { useAuthStore } from '../../stores/AuthStore';
 // const router = useRouter();
 const store = useAuthStore();
 const { error, isLoading } = storeToRefs(store);
-const { signUp } = store;
+const { signUp, login } = store;
 
 function handleError() {
   error.value = null;
@@ -25,12 +25,8 @@ const mode = ref('login');
 const formIsValid = ref(true);
 const emailRegex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,5})(\.[a-z]{2,5})?$/;
 
-function switchAuthMode() {
-  if (mode.value === 'login') {
-    mode.value = 'signup';
-  } else {
-    mode.value = 'login';
-  }
+function setAuthMode(event) {
+  mode.value = event.target.name;
 }
 
 function submitForm() {
@@ -98,10 +94,10 @@ function submitForm() {
           </p>
         </div>
         <div class="flex gap-6">
-          <base-button @click="switchAuthMode" color="yellow"
+          <base-button @click="setAuthMode" name="login" color="yellow"
             >Login</base-button
           >
-          <base-button @click="switchAuthMode" color="green"
+          <base-button @click="setAuthMode" name="signup" color="green"
             >Sign Up</base-button
           >
         </div>

@@ -1,11 +1,11 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
-import { useDjStore } from './DjStore';
+import { useAuthStore } from './AuthStore';
 
 export const useRequestsStore = defineStore('requests', () => {
   const requests = ref([]);
   const isLoading = ref(false);
-  const store = useDjStore();
+  const store = useAuthStore();
   const error = ref(null);
 
   async function storeRequest(data) {
@@ -30,7 +30,7 @@ export const useRequestsStore = defineStore('requests', () => {
     try {
       isLoading.value = true;
       const response = await fetch(
-        `https://dj-finder-f8faf-default-rtdb.firebaseio.com/requests/${store.userId}.json`
+        `https://dj-finder-f8faf-default-rtdb.firebaseio.com/requests/${store.userId}.json?auth=${store.token}`
       );
       const responseData = await response.json();
       if (!response.ok) {
