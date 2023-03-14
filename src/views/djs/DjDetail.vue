@@ -41,7 +41,7 @@ const djContactLink = computed(() => {
     </section>
     <section>
       <base-card>
-        <div>
+        <div class="space-x-2">
           <base-badge
             v-for="genre in genres"
             :key="genre"

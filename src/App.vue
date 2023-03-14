@@ -1,15 +1,19 @@
 <script setup>
 import { RouterView } from 'vue-router';
 import TheHeader from './components/layout/TheHeader.vue';
+import TheFooter from './components/layout/TheFooter.vue';
 </script>
 
 <template>
-  <TheHeader />
-  <RouterView v-slot="slotProps">
-    <Transition name="fade" mode="out-in">
-      <component :is="slotProps.Component"></component>
-    </Transition>
-  </RouterView>
+  <div class="flex min-h-screen flex-col">
+    <TheHeader />
+    <RouterView v-slot="slotProps" class="flex-1">
+      <Transition name="fade" mode="out-in">
+        <component :is="slotProps.Component"></component>
+      </Transition>
+    </RouterView>
+    <TheFooter class="mt-auto" />
+  </div>
 </template>
 
 <style>

@@ -12,11 +12,18 @@ const { logout } = store;
     <nav
       class="flex items-center justify-between bg-gradient-to-b from-slate-600 to-slate-900 px-4 py-10 text-white md:px-10"
     >
-      <h1
-        class="text-2xl font-bold duration-200 hover:text-yellow-300 md:text-4xl"
-      >
-        <RouterLink to="/">Find a DJ</RouterLink>
-      </h1>
+      <div class="group flex flex-col-reverse items-center gap-4 md:flex-row">
+        <img
+          class="hidden group-hover:cursor-pointer group-hover:text-yellow-300 md:block"
+          src="../../assets/vinyl-disc-icon-md.png"
+          alt=""
+        />
+        <h1
+          class="text-2xl font-bold duration-200 group-hover:text-yellow-300 md:text-4xl"
+        >
+          <RouterLink to="/">Find a DJ</RouterLink>
+        </h1>
+      </div>
       <ul
         class="flex flex-col items-center gap-4 text-lg md:flex-row md:text-xl"
       >
