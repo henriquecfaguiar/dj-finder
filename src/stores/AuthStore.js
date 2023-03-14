@@ -1,5 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
+import { useRouter } from 'vue-router';
 
 export const useAuthStore = defineStore('auth', () => {
   const userId = ref('');
@@ -7,11 +8,15 @@ export const useAuthStore = defineStore('auth', () => {
   const tokenExpiration = ref('');
   const isLoading = ref(false);
   const error = ref(null);
+  const isLoggedIn = ref(false);
+  const router = useRouter();
 
   function setUser(data) {
     userId.value = data.localId;
     token.value = data.idToken;
     tokenExpiration.value = data.expiresIn;
+    isLoggedIn.value = true;
+    router.replace('/djs');
   }
 
   async function signUp(data) {
@@ -68,7 +73,16 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  return { signUp, error, isLoading, login, userId, token, tokenExpiration };
+  return {
+    signUp,
+    error,
+    isLoading,
+    login,
+    userId,
+    token,
+    tokenExpiration,
+    isLoggedIn,
+  };
 });
 
 export default {};

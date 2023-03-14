@@ -2,12 +2,15 @@
 import { ref, computed, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useDjStore } from '@/stores/DjStore.js';
+import { useAuthStore } from '../../stores/AuthStore';
 import DjItem from '../../components/djs/DjItem.vue';
 import DjFilter from '../../components/djs/DjFilter.vue';
 
-const store = useDjStore();
-const { djs, hasDjs, isDj, isLoading, error } = storeToRefs(store);
-const { getDjData } = store;
+const djStore = useDjStore();
+const authStore = useAuthStore();
+const { isLoggedIn } = storeToRefs(authStore);
+const { djs, hasDjs, isDj, isLoading, error } = storeToRefs(djStore);
+const { getDjData } = djStore;
 const activeFilters = ref({
   house: true,
   'hip-hop': true,
@@ -50,7 +53,7 @@ onMounted(() => {
         <div class="controls mb-4 flex justify-between">
           <base-button color="green" @click="getDjData()">Refresh</base-button>
           <base-button
-            v-if="!isDj && !isLoading"
+            v-if="!isDj && !isLoading && isLoggedIn"
             link
             color="yellow"
             to="/register"

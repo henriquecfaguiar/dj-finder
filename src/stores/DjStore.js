@@ -26,6 +26,7 @@ export const useDjStore = defineStore('djs', () => {
           body: JSON.stringify(djData),
         }
       );
+      getDjData();
     } catch (error) {
       console.log(error);
     }

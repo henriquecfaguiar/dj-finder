@@ -1,10 +1,8 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
-// import { useRouter } from 'vue-router';
 import { useAuthStore } from '../../stores/AuthStore';
 
-// const router = useRouter();
 const store = useAuthStore();
 const { error, isLoading } = storeToRefs(store);
 const { signUp, login } = store;
@@ -49,7 +47,6 @@ function submitForm() {
     password: password.value.val,
   };
   mode.value === 'signup' ? signUp(formData) : login(formData);
-  // router.replace('/djs');
 }
 </script>
 

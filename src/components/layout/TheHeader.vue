@@ -1,3 +1,11 @@
+<script setup>
+import { storeToRefs } from 'pinia';
+import { useAuthStore } from '../../stores/AuthStore';
+
+const store = useAuthStore();
+const { isLoggedIn } = storeToRefs(store);
+</script>
+
 <template>
   <header>
     <nav
@@ -10,7 +18,12 @@
       </h1>
       <ul class="flex gap-4 text-lg md:text-xl">
         <li><RouterLink to="/djs">All DJ's</RouterLink></li>
-        <li><RouterLink to="/requests">Requests</RouterLink></li>
+        <li v-if="isLoggedIn">
+          <RouterLink to="/requests">Requests</RouterLink>
+        </li>
+        <li v-else>
+          <RouterLink to="/auth">Login</RouterLink>
+        </li>
       </ul>
     </nav>
   </header>
