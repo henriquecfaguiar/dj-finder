@@ -6,6 +6,7 @@ import DjDetail from '../views/djs/DjDetail.vue';
 import ContactDj from '../views/requests/ContactDj.vue';
 import NotFound from '../views/NotFound.vue';
 import UserAuth from '../views/auth/UserAuth.vue';
+import { useAuthStore } from '../stores/AuthStore';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,11 +19,31 @@ const router = createRouter({
       props: true,
       children: [{ path: 'contact', component: ContactDj }],
     },
-    { path: '/register', component: DjRegistration },
-    { path: '/requests', component: RequestsReceived },
-    { path: '/auth', component: UserAuth },
+    {
+      path: '/register',
+      component: DjRegistration,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/requests',
+      component: RequestsReceived,
+      meta: { requiresAuth: true },
+    },
+    { path: '/auth', component: UserAuth, meta: { requiresNotAuth: true } },
     { path: '/:notFound(.*)', component: NotFound },
   ],
+});
+
+// Navigation Guard
+router.beforeEach((to, from, next) => {
+  const store = useAuthStore();
+  if (to.meta.requiresAuth && !store.isLoggedIn) {
+    next('/auth');
+  } else if (to.meta.requiresNotAuth && store.isLoggedIn) {
+    next('/djs');
+  } else {
+    next();
+  }
 });
 
 export default router;
