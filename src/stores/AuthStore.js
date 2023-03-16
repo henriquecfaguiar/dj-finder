@@ -30,52 +30,34 @@ export const useAuthStore = defineStore('auth', () => {
     djStore.getDjData();
   }
 
-  async function signUp(data) {
-    try {
-      isLoading.value = true;
-      const response = await fetch(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCIJbrJpqyIIRp7qe3TSsKsaOJoStdrGYs',
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            email: data.email,
-            password: data.password,
-            returnSecureToken: true,
-          }),
-        }
-      );
-      const responseData = await response.json();
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-      setUser(responseData);
-    } catch (err) {
-      error.value =
-        'Authentication failed. Please check our login data. ' + err;
-    } finally {
-      isLoading.value = false;
+  async function auth(data) {
+    let url;
+    if (data.mode === 'signup') {
+      url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCIJbrJpqyIIRp7qe3TSsKsaOJoStdrGYs';
+    } else if (data.mode === 'login') {
+      url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCIJbrJpqyIIRp7qe3TSsKsaOJoStdrGYs';
+    } else {
+      console.log('Should never happen.');
     }
-  }
-
-  async function login(data) {
     try {
       isLoading.value = true;
-      const response = await fetch(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCIJbrJpqyIIRp7qe3TSsKsaOJoStdrGYs',
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            email: data.email,
-            password: data.password,
-            returnSecureToken: true,
-          }),
-        }
-      );
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          returnSecureToken: true,
+        }),
+      });
       const responseData = await response.json();
       if (!response.ok) {
         throw new Error(response.status);
       }
       setUser(responseData);
+      localStorage.setItem('userId', responseData.localId);
+      localStorage.setItem('token', responseData.idToken);
     } catch (err) {
       error.value =
         'Authentication failed. Please check your login data. ' + err;
@@ -84,11 +66,24 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  function tryLogin() {
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    const tokenExpiration = localStorage.getItem('tokenExpiration');
+    if (userId && token) {
+      setUser({
+        localId: userId,
+        idToken: token,
+        expiresIn: tokenExpiration,
+      });
+    }
+  }
+
   return {
-    signUp,
+    auth,
+    tryLogin,
     error,
     isLoading,
-    login,
     userId,
     token,
     tokenExpiration,

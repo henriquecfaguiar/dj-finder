@@ -29,6 +29,8 @@ export const useRequestsStore = defineStore('requests', () => {
   async function getRequests() {
     try {
       isLoading.value = true;
+      console.log(store.userId);
+      console.log(store.token);
       const response = await fetch(
         `https://dj-finder-f8faf-default-rtdb.firebaseio.com/requests/${store.userId}.json?auth=${store.token}`
       );

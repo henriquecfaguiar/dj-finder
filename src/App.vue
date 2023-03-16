@@ -1,7 +1,11 @@
 <script setup>
 import { RouterView } from 'vue-router';
+import { useAuthStore } from './stores/AuthStore';
 import TheHeader from './components/layout/TheHeader.vue';
 import TheFooter from './components/layout/TheFooter.vue';
+
+const store = useAuthStore();
+store.tryLogin();
 </script>
 
 <template>

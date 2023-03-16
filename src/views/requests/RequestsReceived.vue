@@ -13,9 +13,7 @@ function handleError() {
   error.value = null;
 }
 
-onMounted(() => {
-  getRequests();
-});
+getRequests();
 </script>
 
 <template>

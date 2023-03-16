@@ -5,7 +5,7 @@ import { useAuthStore } from '../../stores/AuthStore';
 
 const store = useAuthStore();
 const { error, isLoading } = storeToRefs(store);
-const { signUp, login } = store;
+const { auth } = store;
 
 function handleError() {
   error.value = null;
@@ -45,8 +45,9 @@ function submitForm() {
   const formData = {
     email: email.value.val,
     password: password.value.val,
+    mode: mode.value,
   };
-  mode.value === 'signup' ? signUp(formData) : login(formData);
+  auth(formData);
 }
 </script>
 
