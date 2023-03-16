@@ -10,7 +10,7 @@ const { logout } = store;
 <template>
   <header>
     <nav
-      class="flex items-center justify-between bg-gradient-to-b from-slate-600 to-slate-900 px-4 py-10 text-white md:px-10"
+      class="flex items-center justify-between bg-gradient-to-b from-slate-600 to-slate-900 p-6 text-white md:px-10"
     >
       <div class="group flex flex-col-reverse items-center gap-4 md:flex-row">
         <img

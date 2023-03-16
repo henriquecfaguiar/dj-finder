@@ -6,7 +6,6 @@ import { useDjStore } from './DjStore';
 export const useAuthStore = defineStore('auth', () => {
   const userId = ref(null);
   const token = ref(null);
-  const tokenExpiration = ref(null);
   const isLoading = ref(false);
   const error = ref(null);
   const isLoggedIn = ref(false);
@@ -16,15 +15,15 @@ export const useAuthStore = defineStore('auth', () => {
   function setUser(data) {
     userId.value = data.localId;
     token.value = data.idToken;
-    tokenExpiration.value = data.expiresIn;
     isLoggedIn.value = true;
-    router.replace('/djs');
   }
 
   function logout() {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenExpiration');
     userId.value = null;
     token.value = null;
-    tokenExpiration.value = null;
     isLoggedIn.value = false;
     router.replace('/djs');
     djStore.getDjData();
@@ -55,9 +54,18 @@ export const useAuthStore = defineStore('auth', () => {
       if (!response.ok) {
         throw new Error(response.status);
       }
-      setUser(responseData);
+
+      const expiresIn = responseData.expiresIn * 1000;
+      const expirationDate = new Date().getTime() + expiresIn;
+
       localStorage.setItem('userId', responseData.localId);
       localStorage.setItem('token', responseData.idToken);
+      localStorage.setItem('tokenExpiration', expirationDate);
+
+      setTimeout(logout, expiresIn);
+
+      setUser(responseData);
+      router.replace('/djs');
     } catch (err) {
       error.value =
         'Authentication failed. Please check your login data. ' + err;
@@ -70,11 +78,16 @@ export const useAuthStore = defineStore('auth', () => {
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
     const tokenExpiration = localStorage.getItem('tokenExpiration');
+    const expiresIn = +tokenExpiration - new Date().getTime();
+
+    if (expiresIn < 0) return;
+
+    setTimeout(logout, expiresIn);
+
     if (userId && token) {
       setUser({
         localId: userId,
         idToken: token,
-        expiresIn: tokenExpiration,
       });
     }
   }
@@ -86,7 +99,6 @@ export const useAuthStore = defineStore('auth', () => {
     isLoading,
     userId,
     token,
-    tokenExpiration,
     isLoggedIn,
     logout,
   };

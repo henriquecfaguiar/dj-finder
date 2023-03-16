@@ -1,5 +1,4 @@
 <script setup>
-import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRequestsStore } from '../../stores/RequestsStore';
 import RequestItem from '../../components/requests/RequestItem.vue';
