@@ -14,29 +14,27 @@ const props = defineProps({
 const text = computed(() => {
   return props.title.toUpperCase();
 });
+
+const type = computed(() => {
+  switch (props.type) {
+    case 'hip-hop':
+      return 'bg-red-600';
+    case 'pop':
+      return 'bg-sky-600';
+    case 'trap':
+      return 'bg-amber-600';
+    case 'house':
+      return 'bg-purple-600';
+    default:
+      return 'black';
+  }
+});
 </script>
 
 <template>
-  <span class="badge" :class="props.type">{{ text }}</span>
+  <span
+    class="rounded-full px-4 py-1 text-center text-sm text-white"
+    :class="type"
+    >{{ text }}</span
+  >
 </template>
-
-<style scoped>
-.badge {
-  @apply rounded-full px-4 py-1 text-center text-sm text-white;
-}
-
-.hip-hop {
-  @apply bg-red-600;
-}
-
-.pop {
-  @apply bg-sky-600;
-}
-
-.trap {
-  @apply bg-amber-600;
-}
-.house {
-  @apply bg-purple-600;
-}
-</style>

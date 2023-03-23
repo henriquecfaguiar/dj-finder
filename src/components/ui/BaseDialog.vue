@@ -29,15 +29,15 @@ function tryClose() {
     <div v-if="props.show" @click="tryClose" class="backdrop"></div>
     <transition name="dialog">
       <dialog open v-if="props.show">
-        <header>
+        <header class="w-full bg-gradient-to-b from-slate-600 to-slate-900 p-4">
           <slot name="header">
             <h2 class="text-xl text-white">{{ props.title }}</h2>
           </slot>
         </header>
-        <section>
+        <section class="p-4">
           <slot></slot>
         </section>
-        <menu v-if="!props.fixed">
+        <menu class="flex justify-end p-4" v-if="!props.fixed">
           <slot name="actions">
             <base-button color="yellow" @click="tryClose">Close</base-button>
           </slot>
@@ -73,16 +73,6 @@ dialog {
   background-color: white;
 }
 
-header {
-  @apply bg-gradient-to-b from-slate-600 to-slate-900;
-  width: 100%;
-  padding: 1rem;
-}
-
-header h2 {
-  margin: 0;
-}
-
 .dialog-enter-from,
 .dialog-leave-to {
   opacity: 0;
@@ -95,17 +85,6 @@ header h2 {
 
 .dialog-leave-active {
   transition: all 0.3s ease-in;
-}
-
-section {
-  padding: 1rem;
-}
-
-menu {
-  padding: 1rem;
-  display: flex;
-  justify-content: flex-end;
-  margin: 0;
 }
 
 @media (min-width: 768px) {

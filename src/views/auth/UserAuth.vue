@@ -61,33 +61,33 @@ function submitForm() {
     </base-dialog>
     <base-card>
       <form @submit.prevent="submitForm" class="space-y-4">
-        <div class="form-control">
+        <div class="flex flex-col items-start space-y-2">
           <label :class="{ 'invalid-label': !email.isValid }" for="email"
             >E-Mail</label
           >
           <input
             :class="{ 'invalid-input': !email.isValid }"
-            class="custom-inputs"
+            class="w-full border-2 border-slate-500"
             type="text"
             id="email"
             v-model.trim="email.val"
           />
-          <p class="error-message" v-if="!email.isValid">
+          <p class="text-sm" v-if="!email.isValid">
             Please enter a valid email address.
           </p>
         </div>
-        <div class="form-control">
+        <div class="flex flex-col items-start space-y-2">
           <label :class="{ 'invalid-label': !password.isValid }" for="password"
             >Password</label
           >
           <input
             :class="{ 'invalid-input': !password.isValid }"
-            class="custom-inputs"
+            class="w-full border-2 border-slate-500"
             type="password"
             id="password"
             v-model.trim="password.val"
           />
-          <p class="error-message" v-if="!password.isValid">
+          <p class="text-sm" v-if="!password.isValid">
             Your password must have at least 8 characters.
           </p>
         </div>
@@ -105,18 +105,6 @@ function submitForm() {
 </template>
 
 <style scoped>
-.form-control {
-  @apply flex flex-col items-start space-y-2;
-}
-
-.custom-inputs {
-  @apply w-full border-2 border-slate-500;
-}
-
-.error-message {
-  @apply text-sm;
-}
-
 .invalid-label {
   @apply text-red-500;
 }

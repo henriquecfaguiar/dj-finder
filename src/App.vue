@@ -9,7 +9,7 @@ store.tryLogin();
 </script>
 
 <template>
-  <div class="flex min-h-screen flex-col">
+  <div class="flex min-h-screen flex-col bg-gray-50">
     <TheHeader />
     <RouterView v-slot="slotProps" class="flex-1">
       <Transition name="fade" mode="out-in">
@@ -21,10 +21,6 @@ store.tryLogin();
 </template>
 
 <style>
-body {
-  @apply bg-gray-50;
-}
-
 .fade-enter-from {
   opacity: 0;
   transform: translateY(-30px);

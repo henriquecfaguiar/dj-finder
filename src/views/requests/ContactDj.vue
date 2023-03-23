@@ -46,33 +46,33 @@ function submitForm() {
 <template>
   <div>
     <form class="space-y-4" @submit.prevent="submitForm">
-      <div class="form-control">
+      <div class="flex flex-col items-start space-y-2">
         <label :class="{ 'invalid-label': !email.isValid }" for="email"
           >E-Mail</label
         >
         <input
-          class="custom-inputs"
+          class="w-full border-2 border-slate-500"
           type="text"
           id="email"
           v-model.trim="email.val"
           :class="{ 'invalid-input': !email.isValid }"
         />
-        <p class="error-message" v-if="!email.isValid">
+        <p class="text-sm" v-if="!email.isValid">
           Please enter a valid email address.
         </p>
       </div>
-      <div class="form-control">
+      <div class="flex flex-col items-start space-y-2">
         <label :class="{ 'invalid-label': !message.isValid }" for="message"
           >Message</label
         >
         <textarea
-          class="custom-inputs"
+          class="w-full border-2 border-slate-500"
           id="message"
           rows="5"
           v-model.trim="message.val"
           :class="{ 'invalid-input': !message.isValid }"
         ></textarea>
-        <p class="error-message" v-if="!message.isValid">
+        <p class="text-sm" v-if="!message.isValid">
           Message must not be empty.
         </p>
       </div>
@@ -82,18 +82,6 @@ function submitForm() {
 </template>
 
 <style scoped>
-.form-control {
-  @apply flex flex-col items-start space-y-2;
-}
-
-.custom-inputs {
-  @apply w-full border-2 border-slate-500;
-}
-
-.error-message {
-  @apply text-sm;
-}
-
 .invalid-label {
   @apply text-red-500;
 }
