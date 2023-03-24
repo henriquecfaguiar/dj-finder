@@ -33,6 +33,13 @@ const buttonColor = computed(() => {
         'text-white': true,
         'hover:bg-green-500': true,
       };
+    case 'flat-yellow':
+      return {
+        'bg-white': true,
+        'text-slate-900': true,
+        'border-2': true,
+        'border-yellow-300': true,
+      };
     default:
       return {
         'bg-pink-500': true,
@@ -43,14 +50,14 @@ const buttonColor = computed(() => {
 
 <template>
   <button
-    class="w-fit rounded-full px-6 py-2 text-center shadow-lg duration-150 ease-linear hover:scale-110"
+    class="w-32 rounded-full px-6 py-2 text-center shadow-lg duration-150 ease-linear hover:scale-105"
     v-if="!props.link"
     :class="buttonColor"
   >
     <slot></slot>
   </button>
   <RouterLink
-    class="w-fit rounded-full px-6 py-2 text-center shadow-lg duration-150 ease-linear hover:scale-110"
+    class="w-fit rounded-full px-6 py-2 text-center shadow-lg duration-150 ease-linear hover:scale-105"
     v-else
     :to="props.to"
     :class="buttonColor"

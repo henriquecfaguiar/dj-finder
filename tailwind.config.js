@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['JetBrains Mono', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'],
+        'JetBrains-Mono': ['JetBrains Mono', 'sans-serif'],
       },
       boxShadow: {
         custom: '0 2px 8px rgba(0, 0, 0, 0.26)',

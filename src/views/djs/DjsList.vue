@@ -51,7 +51,9 @@ onMounted(() => {
     <base-card>
       <section>
         <div class="controls mb-4 flex justify-between">
-          <base-button color="green" @click="getDjData()">Refresh</base-button>
+          <base-button class="py-[10px]" color="green" @click="getDjData()"
+            >Refresh</base-button
+          >
           <base-button
             v-if="!isDj && !isLoading && isLoggedIn"
             link

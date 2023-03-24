@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="col-span-2 flex items-center justify-center space-x-2 bg-gray-800 py-2 text-white"
+    class="col-span-2 flex items-center justify-center space-x-2 bg-gray-800 py-2 font-JetBrains-Mono text-white"
   >
     <p class="text-sm md:text-lg">
       Made with <span class="text-xl text-red-600">&#9829;</span> by

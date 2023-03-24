@@ -95,7 +95,7 @@ function submitForm() {
           <base-button @click="setAuthMode" name="login" color="yellow"
             >Login</base-button
           >
-          <base-button @click="setAuthMode" name="signup" color="green"
+          <base-button @click="setAuthMode" name="signup" color="flat-yellow"
             >Sign Up</base-button
           >
         </div>
