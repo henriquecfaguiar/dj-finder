@@ -54,7 +54,7 @@ onMounted(() => {
           <base-button class="py-[10px]" color="green" @click="getDjData()"
             >Refresh</base-button
           >
-          <p>
+          <p v-if="!isLoggedIn">
             <Router-Link
               to="/auth"
               class="text-amber-900 underline hover:opacity-80"
