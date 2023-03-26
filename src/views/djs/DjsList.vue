@@ -50,10 +50,18 @@ onMounted(() => {
     </section>
     <base-card>
       <section>
-        <div class="controls mb-4 flex justify-between">
+        <div class="controls mb-4 flex items-center justify-between">
           <base-button class="py-[10px]" color="green" @click="getDjData()"
             >Refresh</base-button
           >
+          <p>
+            <Router-Link
+              to="/auth"
+              class="text-amber-900 underline hover:opacity-80"
+              >Login</Router-Link
+            >
+            to register as a DJ
+          </p>
           <base-button
             v-if="!isDj && !isLoading && isLoggedIn"
             link
