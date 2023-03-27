@@ -41,7 +41,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="main-container">
     <base-dialog :show="!!error" title="An error ocurred!" @close="handleError">
       <p>{{ error }}</p>
     </base-dialog>

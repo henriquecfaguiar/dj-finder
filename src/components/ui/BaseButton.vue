@@ -50,14 +50,14 @@ const buttonColor = computed(() => {
 
 <template>
   <button
-    class="w-32 rounded-full px-6 py-2 text-center shadow-lg duration-150 ease-linear hover:scale-105"
+    class="w-32 rounded-full px-6 py-2 text-center duration-150 ease-linear hover:scale-105"
     v-if="!props.link"
     :class="buttonColor"
   >
     <slot></slot>
   </button>
   <RouterLink
-    class="w-fit rounded-full px-6 py-2 text-center shadow-lg duration-150 ease-linear hover:scale-105"
+    class="w-fit rounded-full px-6 py-2 text-center duration-150 ease-linear hover:scale-105"
     v-else
     :to="props.to"
     :class="buttonColor"
